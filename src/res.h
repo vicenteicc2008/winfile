@@ -99,6 +99,8 @@
 #define IDM_SYMLINK         132
 #define IDM_HARDLINK        133
 
+#define IDM_STARTEXPLORER   134
+
 // This IDM_ is reserved for IDH_GROUP_ATTRIBS
 #define IDM_GROUP_ATTRIBS   199
 
@@ -505,8 +507,6 @@
 #define IDS_BUSYCOPYQUITVERIFY      325
 
 #define IDS_PERCENTCOMPLETE   326
-
-#define IDS_FORMATSELECTDLGTITLE 327
 
 #define IDS_DRIVEBASE       350
 #define IDS_12MB            354

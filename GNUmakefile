@@ -3,6 +3,7 @@ SRCS = \
 	src/lfn.c \
 	src/lfnmisc.c \
 	src/numfmt.c \
+	src/Resize.c \
 	src/suggest.c \
 	src/tbar.c \
 	src/treectl.c \
@@ -35,7 +36,7 @@ SRCS = \
 OBJS = $(subst .c,.o,$(SRCS)) src/wfgoto.o src/res.o
 
 CFLAGS = -DUNICODE -DFASTMOVE -DSTRSAFE_NO_DEPRECATE -DWINVER=0x0600
-LDLIBS = -mwindows -lgdi32 -lcomctl32 -lole32 -lshlwapi -loleaut32 -lversion
+LDLIBS = -mwindows -lkernel32 -lgdi32 -luser32 -ladvapi32 -lcomctl32 -lole32 -lshlwapi -lshell32 -loleaut32 -lversion
 TARGET = winfile
 ifeq ($(OS),Windows_NT)
 TARGET := $(TARGET).exe
@@ -61,7 +62,7 @@ $(TARGET) : $(OBJS)
 	$(CXX) -c $(CFLAGS) -I. $< -o $@
 
 src/res.o : src/res.rc src/lang/*.rc src/lang/*.dlg
-	$(WINDRES) -DNOWINRES -I. -i src/res.rc -o src/res.o
+	$(WINDRES) -DNOWINRES -I. -Isrc/ -i src/res.rc -o src/res.o
 
 clean :
 	$(RM) $(OBJS) $(TARGET)
